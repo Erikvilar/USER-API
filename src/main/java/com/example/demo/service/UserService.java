@@ -1,32 +1,26 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.UserDTO;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 
+@Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    public ResponseEntity<List<UserDTO>> findAll() {
-        var dbUser = userRepository.findAll();
-        if (dbUser.isEmpty())
-            return ResponseEntity.notFound().build();
-             
-        var userDTOS = dbUser.stream().map(user -> {
-            var userDTO = new UserDTO(user);
-            return userDTO;
-        }).collect(Collectors.toList());
-        return ResponseEntity.ok(userDTOS);}
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 
     public ResponseEntity<UserDTO> findById(ObjectId id) {
         if (id == null)
@@ -38,9 +32,6 @@ public class UserService {
     }
 
     public ResponseEntity<UserDTO> save(User user) {
-        if (user.getName().isBlank() || user.getAge() <= 0)
-            return ResponseEntity.badRequest().build();
-        user.setId(ObjectId.get());
         return ResponseEntity.ok(new UserDTO(userRepository.save(user)));
     }
 
@@ -53,7 +44,8 @@ public class UserService {
             return ResponseEntity.notFound().build();
         var dbUserObj = dbUser.get();
         dbUserObj.setName(user.getName());
-        dbUserObj.setAge(user.getAge());
+        dbUserObj.setEmail(user.getEmail());
+    
         return ResponseEntity.ok(new UserDTO(userRepository.save(dbUserObj)));}
 
     public ResponseEntity<?> delete(ObjectId id) {

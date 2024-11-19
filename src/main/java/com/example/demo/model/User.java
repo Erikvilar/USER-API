@@ -20,8 +20,10 @@ public class User {
     @Id
     private ObjectId id;
     private String name;
-    private int age;
-    private Address addresss;
+    private String cpf;
+    private String endereco;
+    private String email;
+    private String telefone;
 
- 
+
 }

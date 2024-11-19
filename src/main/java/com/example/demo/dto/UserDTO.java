@@ -2,7 +2,6 @@ package com.example.demo.dto;
 
 import java.io.Serializable;
 
-import com.example.demo.model.Address;
 import com.example.demo.model.User;
 
 import lombok.AllArgsConstructor;
@@ -16,21 +15,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDTO implements  Serializable{
+public class UserDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String id;
     private String name;
-    private int age;
-    private Address addresss;
+    private String cpf;
+    private String email;
+    private String telefone;
+    private String endereco;
 
     public UserDTO(User user) {
-       this.id = user.getId().toString();
-       this.name = user.getName();
-       this.age = user.getAge();
-      this.addresss = user.getAddresss();
+        this.id = user.getId().toString();
+        this.name = user.getName();
+        this.cpf = user.getCpf();
+        this.endereco = user.getEndereco();
+        this.email = user.getEmail();
+        this.telefone = user.getTelefone();
 
     }
-    public UserDTO(String name, int age){
-        this.name = name;
-        this.age = age;
-    }
-    }
+
+   
+}
