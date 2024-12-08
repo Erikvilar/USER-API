@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import java.io.Serializable;
 
+import com.example.demo.model.Address;
 import com.example.demo.model.User;
 
 import lombok.AllArgsConstructor;
@@ -22,16 +23,19 @@ public class UserDTO implements Serializable {
     private String cpf;
     private String email;
     private String telefone;
-    private String endereco;
+    private Address address;
 
     public UserDTO(User user) {
         this.id = user.getId().toString();
         this.name = user.getName();
         this.cpf = user.getCpf();
-        this.endereco = user.getEndereco();
         this.email = user.getEmail();
         this.telefone = user.getTelefone();
+        this.address = user.getAddress();
 
+    }
+    public static UserDTO convert(User user) {
+        return new UserDTO(user);
     }
 
    

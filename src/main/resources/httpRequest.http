@@ -66,8 +66,8 @@
 			},
 			"response": []
 		},
-		{
-			"name": "GET findByCpf",
+		{'
+			"name": "GET findByCpf",'
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},

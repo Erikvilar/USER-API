@@ -17,13 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+    
     @Id
     private ObjectId id;
     private String name;
     private String cpf;
-    private String endereco;
     private String email;
     private String telefone;
+    private Address address;
 
 
 }

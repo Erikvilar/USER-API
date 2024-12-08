@@ -1,6 +1,13 @@
 
+
+
+
 spring:
+
   data:
     mongodb:
-      uri: mongodb+srv://erikvilar:erikav1@cluster0.wt9zg.mongodb.net/mydatabase
-      database: mydatabase
+      uri: ${MONGODB_URI}
+      database: UserDB
+  
+server:
+  port: 6680
